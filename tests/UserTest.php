@@ -12,6 +12,13 @@ class UserTest extends TestCase
     $mail = $user->mail;
     $this->assertNotEmpty($mail);
   }
+  public function testMailRegexValid() {
+    $user = new User('rodolphe@gmail.com','rodolphe','de Scorraille', 15);
+    $mail = $user->mail;
+    preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $mail, $val );
+    print_r($val);
+    $this->assertEquals($mail,$val);
+  }
 
   //name
   public function testNameValid() {
